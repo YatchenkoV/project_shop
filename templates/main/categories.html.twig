@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %} Categories {% endblock %}
 
 {% block body %}
 <style>
@@ -12,10 +12,13 @@
     <h1> Categories ✅</h1>
 
     {% for category in categories %}
-        <h2>{{ category.title }}</h2>
+        <h2> <a href="{{ path('category', {'categorySlug' : category.slug}) }}"> {{ category.title }} </a> </h2>
         <ul>
-            {% for product in category.products %}
-            <li><a>{{ product.title }}</a></li>
+            {% for secondOrderCategory in category.children %}
+                <h3 style="margin-left:20px;"> <a href="{{ path('category', {'categorySlug' : secondOrderCategory.slug}) }}"> {{ secondOrderCategory.title }}</a> </h3>
+                    {#{% for products in  secondOrderCategory.products %}#}
+                        {#<li style="margin-left: 50px"> <a href="{{ path('product', {'categorySlug' : category.slug, 'productSlug' : product.slug}) }}"> {{ products.title }} </a> </li>#}
+                    {#{% endfor %}#}
             {% endfor %}
         </ul>
     {% endfor %}
