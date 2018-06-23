@@ -46,6 +46,7 @@ class Category
     {
         $this->products = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->parent = new ArrayCollection();
     }
 
     public function getId()

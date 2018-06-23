@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
 {% block title %} Categories {% endblock %}
 
@@ -15,4 +15,5 @@
         <li>{{ product.price }}</li>
     </ul>
 </div>
+    {% dump(product.id) %}
 {% endblock %}

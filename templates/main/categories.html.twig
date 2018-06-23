@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '/base/base.html.twig' %}
 
 {% block title %} Categories {% endblock %}
 
@@ -16,9 +16,6 @@
         <ul>
             {% for secondOrderCategory in category.children %}
                 <h3 style="margin-left:20px;"> <a href="{{ path('category', {'categorySlug' : secondOrderCategory.slug}) }}"> {{ secondOrderCategory.title }}</a> </h3>
-                    {#{% for products in  secondOrderCategory.products %}#}
-                        {#<li style="margin-left: 50px"> <a href="{{ path('product', {'categorySlug' : category.slug, 'productSlug' : product.slug}) }}"> {{ products.title }} </a> </li>#}
-                    {#{% endfor %}#}
             {% endfor %}
         </ul>
     {% endfor %}

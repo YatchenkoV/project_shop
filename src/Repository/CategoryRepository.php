@@ -19,25 +19,16 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-    /**
-     * @param $category
-     */
+
+
+
+
     public function getRootCategory()
     {
 
-        $entityManager = $this->getEntityManager();
-        $query = $this->getEntityManager()->createQuery(
-               "SELECT category 
-                    FROM App\Entity\Category category 
-                    WHERE category.parent IS NULL");
-
-        return $query->getResult();
-//        return $this->createQueryBuilder('cat')
-//            ->andWhere('cat.parent = NULL')
-//            ->setParameter('category', $category)
-//            ->getQuery()
-//            ->getResult()
-//            ;
+        return $this->createQueryBuilder('category')
+            ->andWhere('category.parent IS NULL')
+            ->getQuery()->getResult();
     }
 
 //    /**

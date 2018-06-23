@@ -1,20 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends '/base/base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block content %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% block banner_1 %}
+        {% include 'main/partial/banner_1.html.twig' %}
+    {% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% block characteristics %}
+        {% include 'main/partial/characteristics.html.twig' %}
+    {% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% block deals_of_the_week %}
+        {% include 'main/partial/deals_of_the_week.html.twig' %}
+    {% endblock %}
+
+    {% block popular_categories %}
+        {% include 'main/partial/popular_categories.html.twig' %}
+    {% endblock %}
+
+    {% block banner_2 %}
+        {% include 'main/partial/banner_2.html.twig' %}
+    {% endblock %}
+
+    {% block hot_new_arrivals %}
+        {% include 'main/partial/hot_new_arrivals.html.twig' %}
+    {% endblock %}
+
+    {% block best_sellers %}
+        {% include 'main/partial/best_sellers.html.twig' %}
+    {% endblock %}
+
+    {% block adverts %}
+        {% include 'main/partial/adverts.html.twig' %}
+    {% endblock %}
+
+    {% block trends %}
+        {% include 'main/partial/trends.html.twig' %}
+    {% endblock %}
+
+    {% block reviews %}
+        {% include 'main/partial/reviews.html.twig' %}
+    {% endblock %}
+
+    {% block recently_viewed %}
+        {% include 'main/partial/recently_viewed.html.twig' %}
+    {% endblock %}
+
+    {% block brands %}
+        {% include 'main/partial/brands.html.twig' %}
+    {% endblock %}
+
 {% endblock %}
