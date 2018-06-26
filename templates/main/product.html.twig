@@ -1,6 +1,6 @@
 {% extends 'base/base.html.twig' %}
 
-{% block title %} Categories {% endblock %}
+{% block title %} Product {% endblock %}
 
 {% block body %}
 <style>
@@ -14,6 +14,9 @@
         <li>{{ product.title }}</li>
         <li>{{ product.price }}</li>
     </ul>
+
 </div>
-    {% dump(product.id) %}
+    {{ form_start(cartForm) }}
+    {{ form_widget(cartForm) }}
+    {{ form_end(cartForm) }}
 {% endblock %}

@@ -5,9 +5,14 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Repository\CategoryRepository;
+use App\Service\FormManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Form\CartFormType;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ShopController extends Controller
 {
@@ -45,10 +50,31 @@ class ShopController extends Controller
      * @ParamConverter("product", options={"mapping": {"productSlug": "slug"}})
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      */
-    public function showProduct(Product $product, Category $category)
+    public function showProduct(Product $product, Request $request)
     {
+
+        $product_id = $product->getId();
+        $session = new Session();
+        $cartForm = $this->createForm(CartFormType::class, $product);
+
+        $cartForm->handleRequest($request);
+
+        if ($cartForm->isSubmitted() && $cartForm->isValid())
+        {
+
+            $product_quantity = $cartForm->getData()->getQuantity();
+            $session->set($product_id, $product_quantity);
+            dump($session);
+
+            $this->addFlash(
+                'notice',
+                'The product was added to cart!');
+
+            return $this->redirectToRoute('product');
+        }
+
         return $this->render('main/product.html.twig', [
-            'product' => $product,
+            'product' => $product,'cartForm' => $cartForm->createView(),
         ]);
     }
 
