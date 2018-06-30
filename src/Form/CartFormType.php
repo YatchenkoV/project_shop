@@ -16,19 +16,4 @@ class CartFormType extends AbstractType
 {
 
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-       $builder
-           ->add('quantity', IntegerType::class, array('attr' => array('value' => 1)))
-           ->add('id', HiddenType::class)
-           ->add('buy', SubmitType::class, array('label' => 'BUY'));
-
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => Product::class,
-        ));
-    }
 }

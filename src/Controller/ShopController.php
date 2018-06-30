@@ -11,20 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Form\CartFormType;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 class ShopController extends Controller
 {
     /**
      * @Route("/", name="main")
      */
-    public function index(CategoryRepository $categoryRepository)
+    public function index()
     {
-        $categories = $categoryRepository->getRootCategory();
-        return $this->render('main/index.html.twig', [
-            'categories' => $categories,
-        ]);
+
+        return $this->render('main/index.html.twig');
     }
 
     /**
@@ -50,32 +47,32 @@ class ShopController extends Controller
      * @ParamConverter("product", options={"mapping": {"productSlug": "slug"}})
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      */
-    public function showProduct(Product $product, Request $request)
+    public function showProduct(Product $product)
     {
 
-        $product_id = $product->getId();
-        $session = new Session();
-        $cartForm = $this->createForm(CartFormType::class, $product);
+//        $product_id = $product->getId();
+//        $session = new Session();
+//        $cartForm = $this->createForm(CartFormType::class, $product);
+//
+//        $cartForm->handleRequest($request);
+//
+////        if ($cartForm->isSubmitted() && $cartForm->isValid())
+////        {
+////
+////            $product_quantity = $cartForm->getData()->getQuantity();
+////            $session->set($product_id, $product_quantity);
+////            dump($session);
+////
+////            $this->addFlash(
+////                'notice',
+////                'The product was added to cart!');
+////
+////            return $this->redirectToRoute('product');
+////        }
 
-        $cartForm->handleRequest($request);
-
-        if ($cartForm->isSubmitted() && $cartForm->isValid())
-        {
-
-            $product_quantity = $cartForm->getData()->getQuantity();
-            $session->set($product_id, $product_quantity);
-            dump($session);
-
-            $this->addFlash(
-                'notice',
-                'The product was added to cart!');
-
-            return $this->redirectToRoute('product');
-        }
 
         return $this->render('main/product.html.twig', [
-            'product' => $product,'cartForm' => $cartForm->createView(),
-        ]);
+            'product' => $product]);
     }
 
 }

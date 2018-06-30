@@ -12,7 +12,16 @@
 
 {% block content %}
     <!-- Cart -->
+    <h3>Cart:</h3>
 
+        <ul>
+            {% for item in cart %}
+                <li>{{ item.product.title }} ({{ item.quantity }} pieces.) </li>
+                {% endfor %}
+        </ul>
+    <form action="{{ path('empty_cart') }}">
+        <button type="submit">Empty Cart</button>
+    </form>
     <div class="cart_section">
         <div class="container">
             <div class="row">

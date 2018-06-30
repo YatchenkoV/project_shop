@@ -16,7 +16,17 @@
     </ul>
 
 </div>
-    {{ form_start(cartForm) }}
-    {{ form_widget(cartForm) }}
-    {{ form_end(cartForm) }}
+    {#{{ form_start(cartForm) }}#}
+    {#{{ form_widget(cartForm) }}#}
+    {#{{ form_end(cartForm) }}#}
+
+    <div>
+
+        <form action="{{ path('add_to_cart', {'product' : product.id}) }}">
+            {#<input type="hidden" name="productId" value="{{ product.id }}">#}
+            <input type="number" name="quantity" value="1">
+            <button type="submit">Buy!</button>
+        </form>
+
+    </div>
 {% endblock %}
