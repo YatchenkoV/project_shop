@@ -32,3 +32,11 @@ services:
 
     App\Service\FormManager:
         public: true
+
+
+    admin.category:
+            class: App\Admin\CategoryAdmin
+            arguments: [~, App\Entity\Category, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Category, group: Store }
+            public: true

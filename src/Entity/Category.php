@@ -49,6 +49,10 @@ class Category
         $this->parent = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string) $this->title;
+    }
     public function getId()
     {
         return $this->id;

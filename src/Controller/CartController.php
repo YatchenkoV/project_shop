@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\CartFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 
 class CartController extends Controller
@@ -19,8 +21,6 @@ class CartController extends Controller
      */
     public function index()
     {
-        $session = new Session();
-        dump($session->get('cart'));
         $cm = $this->get(CartManager::class);
 
         return $this->render('cart/index.html.twig', ['cart' => $cm->getCart(), ]);
